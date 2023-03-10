@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="" method="post">
+    {% csrf_token %}
+      <label for="address">Select Address:</label>
+      <select name="address">
+            <option hidden></option>
+          {% for address in addresses %}
+              <option>{{ address.city }} {{ address.street }} {{ address.alley }} {{ address.number }} {{ address.floor }}</option>
+        {% endfor %}
+      </select>
+      <br><br>
+      <input type="submit" value="Submit">
+</form>
+
+    <br><br>
+      <a href="{% url 'orders:order_add_address' order_id %}">Add new Address</a>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h4>Checkout</h4>
+    <p>Total: {{ order.get_total_price }}</p>
+    <br>
+    <form action="{% url 'orders:apply_coupon' order.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Apply">
+
+    </form>
+    <br>
+    <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">
+        <a href="{% url 'orders:order_address' order.id %}" class="btn"><h4>Continue</h4></a>
+    </button>
+{% endblock %}
